@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.binayshaw7777.clapingoassignemnt.R
 import com.binayshaw7777.clapingoassignemnt.databinding.ActivityMainBinding
 import com.binayshaw7777.clapingoassignemnt.model.ApiRequest
+import com.binayshaw7777.clapingoassignemnt.utils.Logger
+import com.binayshaw7777.clapingoassignemnt.utils.hide
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.run {
             performJsonParsing(applicationContext.assets)
             successLiveData.observe(this@MainActivity) {
+                Logger.debugLog(it.toString())
                 updateData(it)
             }
             failureLiveData.observe(this@MainActivity) {

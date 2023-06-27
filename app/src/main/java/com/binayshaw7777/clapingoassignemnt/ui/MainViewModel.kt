@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.binayshaw7777.clapingoassignemnt.model.ApiRequest
 import com.binayshaw7777.clapingoassignemnt.network.RequestStatus
 
-class MainViewModel(application: Application) : ViewModel() {
+class MainViewModel() : ViewModel() {
 
     private val mainRepository = MainRepository()
 

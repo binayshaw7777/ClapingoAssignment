@@ -1,30 +1,26 @@
 package com.binayshaw7777.clapingoassignemnt.utils
 
-import android.app.Application
-import android.content.Context
+
 import android.content.res.AssetManager
+import android.view.View
 import com.binayshaw7777.clapingoassignemnt.model.ApiRequest
 import com.binayshaw7777.clapingoassignemnt.network.RequestStatus
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
-import java.io.IOException
 import java.io.InputStream
 
-//fun String.getJsonDataFromAsset(context: Context): String? {
-//    val jsonString: String
-//    try {
-//        jsonString = context.assets.open(this).bufferedReader().use { it.readText() }
-//    } catch (ioException: IOException) {
-//        ioException.printStackTrace()
-//        return null
-//    }
-//    return jsonString
-//}
 
-//fun String.fromJsonToDataClass(context: Context): ApiRequest {
-//    val gson = Gson()
-//    return gson.fromJson(this.getJsonDataFromAsset(context), ApiRequest::class.java)
-//}
+fun View.show() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.hide() {
+    this.visibility = View.GONE
+}
+
+fun View.invisible() {
+    this.visibility = View.INVISIBLE
+}
 
 fun parseJsonFile(assetManager: AssetManager): RequestStatus {
     val fileName = Constants.fileName
