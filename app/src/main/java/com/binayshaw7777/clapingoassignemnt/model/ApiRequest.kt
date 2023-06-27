@@ -9,7 +9,7 @@ data class ApiRequest(
     @SerializedName("rating") var rating: Double? = null,
     @SerializedName("isBlocked") var isBlocked: Boolean? = null,
     @SerializedName("timeslot") var timeslot: Timeslot? = Timeslot(),
-    @SerializedName("bookedTimings") var bookedTimings: BookedTimings? = BookedTimings()
+    @SerializedName("bookedTimings") var bookedTimings: Timeslot? = Timeslot()
 )
 
 data class Teacher(
@@ -20,22 +20,22 @@ data class Teacher(
     @SerializedName("image") var image: String? = null
 )
 
-data class Timeslot (
-    @SerializedName("Sunday"    ) var Sunday    : ArrayList<String> = arrayListOf(),
-    @SerializedName("Monday"    ) var Monday    : ArrayList<String> = arrayListOf(),
-    @SerializedName("Tuesday"   ) var Tuesday   : ArrayList<String> = arrayListOf(),
-    @SerializedName("Wednesday" ) var Wednesday : ArrayList<String> = arrayListOf(),
-    @SerializedName("Thursday"  ) var Thursday  : ArrayList<String> = arrayListOf(),
-    @SerializedName("Friday"    ) var Friday    : ArrayList<String> = arrayListOf(),
-    @SerializedName("Saturday"  ) var Saturday  : ArrayList<String> = arrayListOf()
+data class Timeslot(
+    @SerializedName("Sunday") var Sunday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Monday") var Monday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Tuesday") var Tuesday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Wednesday") var Wednesday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Thursday") var Thursday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Friday") var Friday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Saturday") var Saturday: ArrayList<String> = arrayListOf()
 )
 
-data class BookedTimings (
-    @SerializedName("Sunday"    ) var Sunday    : ArrayList<String> = arrayListOf(),
-    @SerializedName("Monday"    ) var Monday    : ArrayList<String> = arrayListOf(),
-    @SerializedName("Tuesday"   ) var Tuesday   : ArrayList<String> = arrayListOf(),
-    @SerializedName("Wednesday" ) var Wednesday : ArrayList<String> = arrayListOf(),
-    @SerializedName("Thursday"  ) var Thursday  : ArrayList<String> = arrayListOf(),
-    @SerializedName("Friday"    ) var Friday    : ArrayList<String> = arrayListOf(),
-    @SerializedName("Saturday"  ) var Saturday  : ArrayList<String> = arrayListOf()
+data class BookedTimings(
+    @SerializedName("Sunday") var Sunday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Monday") var Monday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Tuesday") var Tuesday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Wednesday") var Wednesday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Thursday") var Thursday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Friday") var Friday: ArrayList<String> = arrayListOf(),
+    @SerializedName("Saturday") var Saturday: ArrayList<String> = arrayListOf()
 )
