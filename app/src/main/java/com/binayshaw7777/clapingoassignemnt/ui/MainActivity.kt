@@ -32,7 +32,6 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
-import java.time.LocalTime
 import java.util.Calendar
 import kotlin.collections.ArrayList
 
@@ -98,7 +97,9 @@ class MainActivity : AppCompatActivity() {
     private fun initVars() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.performJsonParsing(applicationContext.assets)
-        recyclerViewAdapter = SlotsAdapter(this@MainActivity)
+        recyclerViewAdapter = SlotsAdapter(this@MainActivity) {
+            Toast.makeText(this@MainActivity, "You clicked at: $it slot", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun initObservers() {

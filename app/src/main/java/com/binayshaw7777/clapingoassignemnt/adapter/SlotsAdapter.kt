@@ -11,7 +11,7 @@ import com.binayshaw7777.clapingoassignemnt.databinding.SlotsItemLayoutBinding
 private var slotItemList: MutableList<String> = ArrayList()
 private var bookedSlotItemList: MutableList<String> = ArrayList()
 
-class SlotsAdapter(private val activity: Activity) :
+class SlotsAdapter(private val activity: Activity, val onSlotClick: (String) -> Unit) :
     RecyclerView.Adapter<SlotsAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(val binding: SlotsItemLayoutBinding) :
@@ -46,6 +46,9 @@ class SlotsAdapter(private val activity: Activity) :
                 R.drawable.available_slot,
                 null
             )
+            this.rootLayout.setOnClickListener {
+                onSlotClick(item)
+            }
             if (bookedSlotItemList.contains(item)) {
                 this.rootLayout.background = ResourcesCompat.getDrawable(
                     activity.resources,
