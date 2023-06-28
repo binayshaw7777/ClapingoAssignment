@@ -23,11 +23,15 @@ class MainViewModel() : ViewModel() {
     private val _selectedTimeLiveData = MutableLiveData<String>()
     val selectedTimeLiveData: LiveData<String> = _selectedTimeLiveData
 
+    private val _selectedDayLiveData = MutableLiveData<Int>()
+    val selectedDayLiveData: LiveData<Int> = _selectedDayLiveData
+
     private val _failureLiveData = MutableLiveData<String>()
     val failureLiveData: LiveData<String> = _failureLiveData
 
-    fun setSelectedDate(selectedDate: String) {
+    fun setSelectedDate(selectedDate: String, selectedDay: Int) {
         _selectedDateLiveData.postValue(selectedDate)
+        _selectedDayLiveData.postValue(selectedDay)
     }
 
     fun setSelectedTime(selectedTime: String) {

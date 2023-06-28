@@ -7,224 +7,298 @@
     android:background="@color/creamy_background_color"
     tools:context=".ui.MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/teacher_name_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:fontFamily="@font/roboto_medium"
-            tools:text="Teacher Name" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/close_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="20dp"
-            android:src="@drawable/close_icon" />
-
-    </RelativeLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-
-        <ImageView
-            android:id="@+id/teacher_image_view"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/image_of_the_teacher" />
+            android:layout_height="wrap_content">
 
-    </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/like_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:src="@drawable/like"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/teacher_name_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/roboto_medium"
+                    tools:text="Teacher Name" />
 
-    <include
-        android:id="@+id/rating_include_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        layout="@layout/rating_layout"
-        app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/close_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/close_icon" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/background_overlay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rating_include_layout">
+            </RelativeLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/schedule_this_tutor_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/schedule_this_tutor"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+                <ImageView
+                    android:id="@+id/teacher_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/image_of_the_teacher" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/dateCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="5dp"
-            app:cardBackgroundColor="@color/creamy_background_color"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="2dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/schedule_this_tutor_text_view">
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/like_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:src="@drawable/like"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView"
+                app:layout_constraintStart_toEndOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+            <include
+                android:id="@+id/rating_include_layout"
+                layout="@layout/rating_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/cardView"
+                app:layout_constraintStart_toStartOf="@+id/cardView"
+                app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/background_overlay"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rating_include_layout">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/dateImageView"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginBottom="5dp"
-                    android:src="@drawable/date_icon"
-                    app:layout_constraintBottom_toTopOf="@+id/selected_date_text_view"
-                    app:layout_constraintStart_toStartOf="@+id/selected_date_text_view"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/schedule_this_tutor_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/schedule_this_tutor"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/date_place_holder_text_view"
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/date"
-                    android:textColor="@color/card_item_color"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/dateImageView"
-                    app:layout_constraintStart_toEndOf="@+id/dateImageView"
-                    app:layout_constraintTop_toTopOf="@+id/dateImageView" />
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/dateCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="5dp"
+                    app:cardBackgroundColor="@color/creamy_background_color"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_this_tutor_text_view">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/dateImageView"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/date_icon"
+                            app:layout_constraintBottom_toTopOf="@+id/selected_date_text_view"
+                            app:layout_constraintStart_toStartOf="@+id/selected_date_text_view"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/date_place_holder_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/date"
+                            android:textColor="@color/card_item_color"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/dateImageView"
+                            app:layout_constraintStart_toEndOf="@+id/dateImageView"
+                            app:layout_constraintTop_toTopOf="@+id/dateImageView" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/selected_date_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/select_date"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/timeCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardBackgroundColor="@color/creamy_background_color"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/schedule_this_tutor_text_view">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/timeImageView"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/time_icon"
+                            app:layout_constraintBottom_toTopOf="@+id/selected_time_text_view"
+                            app:layout_constraintEnd_toStartOf="@+id/time_place_holder_text_view"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/time_place_holder_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/time"
+                            android:textColor="@color/card_item_color"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/timeImageView"
+                            app:layout_constraintEnd_toEndOf="@+id/selected_time_text_view"
+                            app:layout_constraintTop_toTopOf="@+id/timeImageView" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/selected_time_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/select_time"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/slots_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="13dp"
+                    android:layout_marginTop="10dp"
+                    android:nestedScrollingEnabled="true"
+                    app:layout_constraintTop_toBottomOf="@+id/dateCardView" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/selected_date_text_view"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/show_more_less_text_view"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/select_date"
+                    android:paddingVertical="10dp"
+                    android:text="@string/show_more"
+                    android:textAlignment="center"
+                    app:layout_goneMarginTop="1dp"
+                    android:textColor="@color/dark_violet"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/slots_recyclerview" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="25dp"
+                    app:layout_goneMarginTop="25dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@color/light_gray"
+                    app:layout_constraintTop_toBottomOf="@id/show_more_less_text_view" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/about_us_place_holder_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_me"
+                    android:layout_marginTop="15dp"
                     android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@id/divider"
+                    app:layout_constraintTop_toBottomOf="@id/divider"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/about_us_text_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:textColor="@color/low_level_text_color"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/about_us_place_holder_text_view"
+                    tools:text="This is an example text that is used to demonstrate the use of this text view layout and nothing else." />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/timeCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="16dp"
-            app:cardBackgroundColor="@color/creamy_background_color"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/schedule_this_tutor_text_view">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/timeImageView"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:src="@drawable/time_icon"
-                    app:layout_constraintBottom_toTopOf="@+id/selected_time_text_view"
-                    app:layout_constraintEnd_toStartOf="@+id/time_place_holder_text_view"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/time_place_holder_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/time"
-                    android:textColor="@color/card_item_color"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/timeImageView"
-                    app:layout_constraintEnd_toEndOf="@+id/selected_time_text_view"
-                    app:layout_constraintTop_toTopOf="@+id/timeImageView" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/selected_time_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/select_time"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
