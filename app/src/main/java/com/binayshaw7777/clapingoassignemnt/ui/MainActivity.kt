@@ -204,6 +204,7 @@ class MainActivity : AppCompatActivity() {
             val day = calendar.time.day
 
             binding.selectedDateTextView.text = date
+            binding.showMoreLessTextView.text = getString(R.string.show_more)
             mainViewModel.setSelectedDate(date, day)
         }
     }
