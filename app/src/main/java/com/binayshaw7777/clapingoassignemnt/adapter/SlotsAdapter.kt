@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.binayshaw7777.clapingoassignemnt.databinding.SlotsItemLayoutBinding
 
 private var slotItemList: MutableList<String> = ArrayList()
+private var bookedSlotItemList: MutableList<String> = ArrayList()
 
 class SlotsAdapter(activity: Activity) : RecyclerView.Adapter<SlotsAdapter.ItemViewHolder>() {
 
@@ -21,9 +22,11 @@ class SlotsAdapter(activity: Activity) : RecyclerView.Adapter<SlotsAdapter.ItemV
 
     override fun getItemCount() = slotItemList.size
 
-    fun setAllItems(newListOfSlots: MutableList<String>) {
+    fun setAllItems(newListOfSlots: MutableList<String>, newBookedListOfSlots: MutableList<String>) {
         slotItemList.clear()
         slotItemList.addAll(newListOfSlots)
+        bookedSlotItemList.clear()
+        bookedSlotItemList.addAll(bookedSlotItemList)
         notifyDataSetChanged()
     }
 

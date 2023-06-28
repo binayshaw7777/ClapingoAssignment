@@ -24,6 +24,7 @@ import com.binayshaw7777.clapingoassignemnt.utils.convertTo12HourFormat
 import com.binayshaw7777.clapingoassignemnt.utils.createSublistIfSizeExceedsThreshold
 import com.binayshaw7777.clapingoassignemnt.utils.hide
 import com.binayshaw7777.clapingoassignemnt.utils.show
+import com.binayshaw7777.clapingoassignemnt.utils.splitTimeRanges
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.datepicker.CalendarConstraints
@@ -127,8 +128,12 @@ class MainActivity : AppCompatActivity() {
         limit: Int
     ) {
         val listOfSlots: ArrayList<String> = Utils.getListFromDayOfWeek(dayOfWeekIndex, timeslot)
+        val listOfBookedSlots: ArrayList<String> =
+            Utils.getListFromDayOfWeek(dayOfWeekIndex, bookedTimings)
+        val splitArray = splitTimeRanges(listOfSlots)
+        Logger.debugLog("Split array is: $splitArray")
 
-        if (listOfSlots.isNotEmpty()) {
+        if (splitArray.isNotEmpty()) {
             binding.showMoreLessTextView.show()
 //            binding.slotsRecyclerview.show()
         } else {
@@ -137,13 +142,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (limit == -1) {
-            recyclerViewAdapter.setAllItems(listOfSlots)
+            recyclerViewAdapter.setAllItems(splitArray, listOfBookedSlots)
             return
         }
 
-        val trimmedSlotsList = createSublistIfSizeExceedsThreshold(listOfSlots, limit)
+        val trimmedSlotsList = createSublistIfSizeExceedsThreshold(splitArray, limit)
 
-        recyclerViewAdapter.setAllItems(trimmedSlotsList)
+        recyclerViewAdapter.setAllItems(trimmedSlotsList, listOfBookedSlots)
     }
 
     private fun updateData(apiRequest: ApiRequest) {
