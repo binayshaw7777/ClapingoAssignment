@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.binayshaw7777.clapingoassignemnt.R
 import com.binayshaw7777.clapingoassignemnt.R.id.*
 import com.binayshaw7777.clapingoassignemnt.adapter.SlotsAdapter
 import com.binayshaw7777.clapingoassignemnt.databinding.ActivityMainBinding
@@ -18,8 +19,11 @@ import com.binayshaw7777.clapingoassignemnt.model.Timeslot
 import com.binayshaw7777.clapingoassignemnt.utils.Constants
 import com.binayshaw7777.clapingoassignemnt.utils.Constants.recyclerViewThresholdLimitDisplay
 import com.binayshaw7777.clapingoassignemnt.utils.Logger
+import com.binayshaw7777.clapingoassignemnt.utils.Utils
 import com.binayshaw7777.clapingoassignemnt.utils.convertTo12HourFormat
 import com.binayshaw7777.clapingoassignemnt.utils.createSublistIfSizeExceedsThreshold
+import com.binayshaw7777.clapingoassignemnt.utils.hide
+import com.binayshaw7777.clapingoassignemnt.utils.show
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.datepicker.CalendarConstraints
@@ -58,9 +62,35 @@ class MainActivity : AppCompatActivity() {
             timeCardView.setOnClickListener {
                 showTimePicker()
             }
+
             val layoutManager = GridLayoutManager(this@MainActivity, 3)
-            binding.slotsRecyclerview.layoutManager = layoutManager
-            binding.slotsRecyclerview.adapter = recyclerViewAdapter
+            slotsRecyclerview.layoutManager = layoutManager
+            slotsRecyclerview.adapter = recyclerViewAdapter
+
+            showMoreLessTextView.setOnClickListener {
+                val currentText = showMoreLessTextView.text.toString()
+
+                mainViewModel.apply {
+                    val apiRequest = this.successLiveData.value
+                    if (currentText == getString(R.string.show_more)) {
+                        showMoreLessTextView.text = getString(R.string.show_less)
+                        showSlotsInRecyclerView(
+                            this.selectedDayLiveData.value!!,
+                            successLiveData.value?.timeslot!!,
+                            successLiveData.value?.bookedTimings!!,
+                            -1
+                        )
+                    } else {
+                        showMoreLessTextView.text = getString(R.string.show_more)
+                        showSlotsInRecyclerView(
+                            this.selectedDayLiveData.value!!,
+                            apiRequest?.timeslot!!,
+                            apiRequest.bookedTimings!!,
+                            recyclerViewThresholdLimitDisplay
+                        )
+                    }
+                }
+            }
         }
     }
 
@@ -96,38 +126,23 @@ class MainActivity : AppCompatActivity() {
         bookedTimings: Timeslot,
         limit: Int
     ) {
-        var listOfSlots: ArrayList<String> = ArrayList()
-        when (dayOfWeekIndex) {
-            0 -> {
-                listOfSlots = timeslot.Sunday
-            }
+        val listOfSlots: ArrayList<String> = Utils.getListFromDayOfWeek(dayOfWeekIndex, timeslot)
 
-            1 -> {
-                listOfSlots = timeslot.Monday
-            }
-
-            2 -> {
-                listOfSlots = timeslot.Tuesday
-            }
-
-            3 -> {
-                listOfSlots = timeslot.Wednesday
-            }
-
-            4 -> {
-                listOfSlots = timeslot.Thursday
-            }
-
-            5 -> {
-                listOfSlots = timeslot.Friday
-            }
-
-            6 -> {
-                listOfSlots = timeslot.Saturday
-            }
+        if (listOfSlots.isNotEmpty()) {
+            binding.showMoreLessTextView.show()
+//            binding.slotsRecyclerview.show()
+        } else {
+            binding.showMoreLessTextView.hide()
+//            binding.slotsRecyclerview.hide()
         }
-        Logger.debugLog("Initial List items: $listOfSlots")
+
+        if (limit == -1) {
+            recyclerViewAdapter.setAllItems(listOfSlots)
+            return
+        }
+
         val trimmedSlotsList = createSublistIfSizeExceedsThreshold(listOfSlots, limit)
+
         recyclerViewAdapter.setAllItems(trimmedSlotsList)
     }
 
@@ -162,6 +177,7 @@ class MainActivity : AppCompatActivity() {
             DiskCacheStrategy.DATA
         ).into(binding.teacherImageView)
         binding.ratingIncludeLayout.ratingTextView.text = rating.toString()
+        binding.aboutUsTextView.text = teacher.description.toString()
     }
 
     @SuppressLint("SimpleDateFormat")

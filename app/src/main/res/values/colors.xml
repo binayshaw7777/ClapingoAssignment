@@ -10,6 +10,7 @@
     <color name="card_item_color">#ABBAB7</color>
     <color name="light_violet">#7E99EA</color>
     <color name="dark_violet">#4B6FDD</color>
+    <color name="low_level_text_color">#565656</color>
 
 
     <color name="card_color">#EDF2F7</color>
