@@ -24,6 +24,7 @@ import com.binayshaw7777.clapingoassignemnt.utils.convertTo12HourFormat
 import com.binayshaw7777.clapingoassignemnt.utils.createSublistIfSizeExceedsThreshold
 import com.binayshaw7777.clapingoassignemnt.utils.hide
 import com.binayshaw7777.clapingoassignemnt.utils.show
+import com.binayshaw7777.clapingoassignemnt.utils.splitTimeRanges
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.datepicker.CalendarConstraints
@@ -31,7 +32,6 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
-import java.time.LocalTime
 import java.util.Calendar
 import kotlin.collections.ArrayList
 
@@ -97,7 +97,9 @@ class MainActivity : AppCompatActivity() {
     private fun initVars() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.performJsonParsing(applicationContext.assets)
-        recyclerViewAdapter = SlotsAdapter(this@MainActivity)
+        recyclerViewAdapter = SlotsAdapter(this@MainActivity) {
+            Toast.makeText(this@MainActivity, "You clicked at: $it slot", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun initObservers() {
@@ -127,8 +129,12 @@ class MainActivity : AppCompatActivity() {
         limit: Int
     ) {
         val listOfSlots: ArrayList<String> = Utils.getListFromDayOfWeek(dayOfWeekIndex, timeslot)
+        val listOfBookedSlots: ArrayList<String> =
+            Utils.getListFromDayOfWeek(dayOfWeekIndex, bookedTimings)
+        val splitArray = splitTimeRanges(listOfSlots)
+        Logger.debugLog("Split array is: $splitArray")
 
-        if (listOfSlots.isNotEmpty()) {
+        if (splitArray.isNotEmpty()) {
             binding.showMoreLessTextView.show()
 //            binding.slotsRecyclerview.show()
         } else {
@@ -137,36 +143,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (limit == -1) {
-            recyclerViewAdapter.setAllItems(listOfSlots)
+            recyclerViewAdapter.setAllItems(splitArray, listOfBookedSlots)
             return
         }
 
-        val trimmedSlotsList = createSublistIfSizeExceedsThreshold(listOfSlots, limit)
+        val trimmedSlotsList = createSublistIfSizeExceedsThreshold(splitArray, limit)
 
-        recyclerViewAdapter.setAllItems(trimmedSlotsList)
+        recyclerViewAdapter.setAllItems(trimmedSlotsList, listOfBookedSlots)
     }
 
     private fun updateData(apiRequest: ApiRequest) {
         apiRequest.apply {
             if (statusCode != 200) return
             this.teacher?.let { updateTeacherDetails(it, apiRequest.rating ?: 0.0) }
-        }
-    }
-
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun splitInto15MinIntervals(array: Array<String>): List<List<String>> {
-        val localTimes = array.map { LocalTime.parse(it) }
-        val intervals = mutableListOf<LocalTime>()
-        var time = localTimes.first()
-        while (time.isBefore(localTimes.last())) {
-            intervals.add(time)
-            time = time.plusMinutes(15)
-        }
-        intervals.add(localTimes.last())
-        val chunkSize = intervals.size / 3
-        return intervals.chunked(chunkSize).map { chunk ->
-            chunk.map { it.toString() }
         }
     }
 
@@ -199,6 +188,7 @@ class MainActivity : AppCompatActivity() {
             val day = calendar.time.day
 
             binding.selectedDateTextView.text = date
+            binding.showMoreLessTextView.text = getString(R.string.show_more)
             mainViewModel.setSelectedDate(date, day)
         }
     }

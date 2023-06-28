@@ -3,12 +3,16 @@ package com.binayshaw7777.clapingoassignemnt.adapter
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.binayshaw7777.clapingoassignemnt.R
 import com.binayshaw7777.clapingoassignemnt.databinding.SlotsItemLayoutBinding
 
 private var slotItemList: MutableList<String> = ArrayList()
+private var bookedSlotItemList: MutableList<String> = ArrayList()
 
-class SlotsAdapter(activity: Activity) : RecyclerView.Adapter<SlotsAdapter.ItemViewHolder>() {
+class SlotsAdapter(private val activity: Activity, val onSlotClick: (String) -> Unit) :
+    RecyclerView.Adapter<SlotsAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(val binding: SlotsItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -21,9 +25,14 @@ class SlotsAdapter(activity: Activity) : RecyclerView.Adapter<SlotsAdapter.ItemV
 
     override fun getItemCount() = slotItemList.size
 
-    fun setAllItems(newListOfSlots: MutableList<String>) {
+    fun setAllItems(
+        newListOfSlots: MutableList<String>,
+        newBookedListOfSlots: MutableList<String>
+    ) {
         slotItemList.clear()
         slotItemList.addAll(newListOfSlots)
+        bookedSlotItemList.clear()
+        bookedSlotItemList.addAll(newBookedListOfSlots)
         notifyDataSetChanged()
     }
 
@@ -32,6 +41,21 @@ class SlotsAdapter(activity: Activity) : RecyclerView.Adapter<SlotsAdapter.ItemV
 
         holder.binding.apply {
             timeSlotTextView.text = item
+            this.rootLayout.background = ResourcesCompat.getDrawable(
+                activity.resources,
+                R.drawable.available_slot,
+                null
+            )
+            this.rootLayout.setOnClickListener {
+                onSlotClick(item)
+            }
+            if (bookedSlotItemList.contains(item)) {
+                this.rootLayout.background = ResourcesCompat.getDrawable(
+                    activity.resources,
+                    R.drawable.unavailable_slot,
+                    null
+                )
+            }
         }
     }
 

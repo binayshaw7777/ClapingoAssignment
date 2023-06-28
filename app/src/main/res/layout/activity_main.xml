@@ -4,18 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/creamy_background_color"
+    android:background="@drawable/split_background"
     tools:context=".ui.MainActivity">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="true"
-        android:layout_weight="1"
-        android:orientation="vertical"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -95,12 +90,10 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/background_overlay"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rating_include_layout">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -108,10 +101,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:fontFamily="@font/roboto_medium"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="@string/schedule_this_tutor"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -155,11 +148,11 @@
                             android:id="@+id/date_place_holder_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/date"
-                            android:textColor="@color/card_item_color"
-                            android:textSize="12sp"
+                            android:textColor="@color/low_level_text_color"
+                            android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="@+id/dateImageView"
                             app:layout_constraintStart_toEndOf="@+id/dateImageView"
                             app:layout_constraintTop_toTopOf="@+id/dateImageView" />
@@ -203,7 +196,7 @@
                             android:id="@+id/timeImageView"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:layout_marginEnd="10dp"
+                            android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
                             android:src="@drawable/time_icon"
                             app:layout_constraintBottom_toTopOf="@+id/selected_time_text_view"
@@ -214,10 +207,10 @@
                             android:id="@+id/time_place_holder_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/time"
-                            android:textColor="@color/card_item_color"
-                            android:textSize="12sp"
+                            android:textColor="@color/low_level_text_color"
+                            android:textSize="14sp"
                             app:layout_constraintBottom_toBottomOf="@+id/timeImageView"
                             app:layout_constraintEnd_toEndOf="@+id/selected_time_text_view"
                             app:layout_constraintTop_toTopOf="@+id/timeImageView" />
@@ -275,7 +268,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/about_me"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="16dp"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@id/divider"
                     app:layout_constraintTop_toBottomOf="@id/divider"
@@ -286,9 +279,12 @@
                     android:id="@+id/about_us_text_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
                     android:textColor="@color/low_level_text_color"
                     android:textSize="14sp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/about_us_place_holder_text_view"
@@ -298,7 +294,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
