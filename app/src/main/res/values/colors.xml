@@ -8,6 +8,8 @@
     <color name="yellowish_orange_color">#FF881D</color>
     <color name="background_color">#FFFFFFFF</color>
     <color name="card_item_color">#ABBAB7</color>
+    <color name="light_violet">#7E99EA</color>
+    <color name="dark_violet">#4B6FDD</color>
 
 
     <color name="card_color">#EDF2F7</color>

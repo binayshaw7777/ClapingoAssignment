@@ -9,6 +9,13 @@ import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import java.io.InputStream
 
+fun <T> createSublistIfSizeExceedsThreshold(list: ArrayList<T>, threshold: Int): MutableList<T> {
+    return if (list.size > threshold) {
+        list.subList(0, threshold)
+    } else {
+        list
+    }
+}
 
 fun View.show() {
     this.visibility = View.VISIBLE
