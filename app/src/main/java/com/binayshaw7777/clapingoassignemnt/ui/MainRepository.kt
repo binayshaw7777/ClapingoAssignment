@@ -7,7 +7,7 @@ import com.binayshaw7777.clapingoassignemnt.utils.parseJsonFile
 
 class MainRepository {
 
-    fun performJsonParsing(assetManager: AssetManager) : RequestStatus{
+    fun performJsonParsing(assetManager: AssetManager) : RequestStatus {
         return parseJsonFile(assetManager)
     }
 
