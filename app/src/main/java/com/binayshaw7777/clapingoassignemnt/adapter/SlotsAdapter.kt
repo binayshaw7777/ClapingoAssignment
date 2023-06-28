@@ -11,7 +11,8 @@ import com.binayshaw7777.clapingoassignemnt.databinding.SlotsItemLayoutBinding
 private var slotItemList: MutableList<String> = ArrayList()
 private var bookedSlotItemList: MutableList<String> = ArrayList()
 
-class SlotsAdapter(val activity: Activity) : RecyclerView.Adapter<SlotsAdapter.ItemViewHolder>() {
+class SlotsAdapter(private val activity: Activity) :
+    RecyclerView.Adapter<SlotsAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(val binding: SlotsItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root)

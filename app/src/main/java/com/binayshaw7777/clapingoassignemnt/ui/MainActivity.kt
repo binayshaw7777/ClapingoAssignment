@@ -158,23 +158,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun splitInto15MinIntervals(array: Array<String>): List<List<String>> {
-        val localTimes = array.map { LocalTime.parse(it) }
-        val intervals = mutableListOf<LocalTime>()
-        var time = localTimes.first()
-        while (time.isBefore(localTimes.last())) {
-            intervals.add(time)
-            time = time.plusMinutes(15)
-        }
-        intervals.add(localTimes.last())
-        val chunkSize = intervals.size / 3
-        return intervals.chunked(chunkSize).map { chunk ->
-            chunk.map { it.toString() }
-        }
-    }
-
     private fun updateTeacherDetails(teacher: Teacher, rating: Double) {
         binding.teacherNameTextView.text = teacher.name.toString()
         Logger.debugLog("Teacher name is: ${teacher.name}")
